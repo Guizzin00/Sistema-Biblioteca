@@ -1,92 +1,78 @@
-Sistema de Biblioteca 📚
-Contexto
+# Sistema de Biblioteca 📚
+
+## Contexto
+
 Este projeto tem como objetivo criar um sistema que gerencia itens de uma biblioteca (como livros e revistas) e o empréstimo desses itens por usuários.
 
-Estrutura do Sistema
+---
+
+## Estrutura do Sistema
+
 O sistema é composto por várias classes, cada uma responsável por um aspecto específico do gerenciamento da biblioteca. As classes principais são:
 
-ItemBiblioteca
+1. **ItemBiblioteca**
+2. **Livro** (herda de `ItemBiblioteca`)
+3. **Revista** (herda de `ItemBiblioteca`)
+4. **Usuario**
 
-Livro (herda de ItemBiblioteca)
+---
 
-Revista (herda de ItemBiblioteca)
+## Classes e Atributos
 
-Usuario
+### Classe: `ItemBiblioteca`
 
-Classes e Atributos
-Classe: ItemBiblioteca
-Atributos:
+- **Atributos:**
+  - `titulo` (String): Título do item.
+  - `ano_publicacao` (int): Ano em que foi publicado.
+  - `disponivel` (boolean): Indica se o item está disponível para empréstimo.
 
-titulo (String): Título do item.
+- **Método:**
+  - `detalhes()`: Retorna informações detalhadas do item.
 
-ano_publicacao (int): Ano em que foi publicado.
+### Classe: `Livro` (Herda de `ItemBiblioteca`)
 
-disponivel (boolean): Indica se o item está disponível para empréstimo.
+- **Atributos adicionais:**
+  - `autor` (String): Nome do autor do livro.
+  - `numero_paginas` (int): Quantidade de páginas.
+  - `isbn` (String): Código ISBN do livro.
 
-Método:
+- **Método:**
+  - `detalhes()`: Retorna informações formatadas específicas de um livro.
 
-detalhes(): Retorna informações detalhadas do item.
+### Classe: `Revista` (Herda de `ItemBiblioteca`)
 
-Classe: Livro (Herda de ItemBiblioteca)
-Atributos adicionais:
+- **Atributos adicionais:**
+  - `numero` (int): Número da edição da revista.
+  - `periodicidade` (String): Exemplo: "semanal", "mensal".
+  - `editora` (String): Nome da editora.
 
-autor (String): Nome do autor do livro.
+- **Método:**
+  - `detalhes()`: Retorna informações formatadas específicas de uma revista.
 
-numero_paginas (int): Quantidade de páginas.
+---
 
-isbn (String): Código ISBN do livro.
+## Encapsulamento
 
-Método:
+O atributo `disponivel` na classe `ItemBiblioteca` deve ser protegido para garantir que ele só seja alterado através de métodos específicos, como `emprestar()` e `devolver()`. Isso garante a integridade dos dados.
 
-detalhes(): Retorna informações formatadas específicas de um livro.
+---
 
-Classe: Revista (Herda de ItemBiblioteca)
-Atributos adicionais:
+## Classe de Composição: `Usuario`
 
-numero (int): Número da edição da revista.
+- **Atributos:**
+  - `nome` (String): Nome do usuário.
+  - `id_usuario` (int): Identificador único do usuário.
+  - `itens_emprestados` (Lista de `ItemBiblioteca`): Lista de itens que o usuário pegou emprestado.
 
-periodicidade (String): Exemplo: "semanal", "mensal".
+- **Método:**
+  - `emprestar_item(item: ItemBiblioteca)`: Adiciona um item à lista de itens emprestados, verificando se o item está disponível para empréstimo.
 
-editora (String): Nome da editora.
+---
 
-Método:
+## Objetivos do Exercício
 
-detalhes(): Retorna informações formatadas específicas de uma revista.
-
-Encapsulamento
-O atributo disponivel na classe ItemBiblioteca deve ser protegido para garantir que ele só seja alterado através de métodos específicos, como emprestar() e devolver(). Isso garante a integridade dos dados.
-
-Classe de Composição: Usuario
-Atributos:
-
-nome (String): Nome do usuário.
-
-id_usuario (int): Identificador único do usuário.
-
-itens_emprestados (Lista de ItemBiblioteca): Lista de itens que o usuário pegou emprestado.
-
-Método:
-
-emprestar_item(item: ItemBiblioteca): Adiciona um item à lista de itens emprestados, verificando se o item está disponível para empréstimo.
-
-Objetivos do Exercício
-Abstração: A classe ItemBiblioteca serve para definir a estrutura comum de todos os itens, como livros e revistas.
-
-Herança: As classes Livro e Revista estendem ItemBiblioteca e personalizam o método detalhes() para fornecer informações específicas de cada tipo de item.
-
-Encapsulamento: A manipulação do atributo disponivel é feita através de métodos específicos, garantindo que o status do item seja controlado corretamente.
-
-Polimorfismo: O método detalhes() pode ser chamado em diferentes tipos de itens (livros ou revistas), retornando informações distintas dependendo do tipo do item.
-
-Composição: A classe Usuario armazena uma lista de instâncias de ItemBiblioteca e pode gerenciar os itens que o usuário pegou emprestado.
-
-
-
-
-
-
-
-
-
-
-
+1. **Abstração:** A classe `ItemBiblioteca` serve para definir a estrutura comum de todos os itens, como livros e revistas.
+2. **Herança:** As classes `Livro` e `Revista` estendem `ItemBiblioteca` e personalizam o método `detalhes()` para fornecer informações específicas de cada tipo de item.
+3. **Encapsulamento:** A manipulação do atributo `disponivel` é feita através de métodos específicos, garantindo que o status do item seja controlado corretamente.
+4. **Polimorfismo:** O método `detalhes()` pode ser chamado em diferentes tipos de itens (livros ou revistas), retornando informações distintas dependendo do tipo do item.
+5. **Composição:** A classe `Usuario` armazena uma lista de instâncias de `ItemBiblioteca` e pode gerenciar os itens que o usuário pegou emprestado.
